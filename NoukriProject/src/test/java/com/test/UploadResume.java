@@ -3,14 +3,16 @@ package com.test;
 import java.awt.AWTException;
 
 import org.testng.annotations.Test;
+
 import base.BaseTest;
 import pageEvents.HomePage;
 import pageEvents.LoginPage;
 import pageEvents.ProfilePage;
+import reExeuter.RetryAnalyser;
 
-public class Test1 extends BaseTest {
+public class UploadResume extends BaseTest {
 	
-  @Test (dataProvider = "login" , invocationCount = 1)
+  @Test (dataProvider = "login" , retryAnalyzer = RetryAnalyser.class )
   public void f(String username, String password) throws InterruptedException, AWTException {
 	  LoginPage loginPage = new LoginPage(driver);
 	  HomePage homePage = new HomePage(driver);
@@ -32,5 +34,7 @@ public class Test1 extends BaseTest {
 	  homePage.clickOnProfileIcon();
 	  homePage.clicOnLogout();
   }
+  
+  
   
 }

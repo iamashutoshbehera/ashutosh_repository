@@ -9,8 +9,6 @@ import utils.Utility;
 
 public class ProfilePage {
 	
-//	@FindBy(xpath = "(//a[@href='javascript:;'])[1]") private WebElement updateResumeLink;
-	
 	@FindBy(xpath = "(//div[@class='action'])[1]") private WebElement updateResumeLink;		
 	@FindBy(xpath = "//p[@class = 'head']") private WebElement updateProfileSuccess;
 	

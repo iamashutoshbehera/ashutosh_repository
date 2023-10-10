@@ -6,6 +6,10 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -36,7 +40,7 @@ public static void performClik(WebElement element) throws InterruptedException {
 	public static void sendValues(WebElement element, String value ) throws InterruptedException {
 		
 		for(int i = 1 ; i <= 5 ; i++) {
-			
+
 			try {
 				element.sendKeys(value);
 				break;
@@ -71,6 +75,36 @@ public static void performClik(WebElement element) throws InterruptedException {
 		r.keyPress(KeyEvent.VK_ENTER);
 		r.keyRelease(KeyEvent.VK_ENTER);
 		
+	}
+	
+	public static String getParentTab() {
+		return driver.getWindowHandle();
+	}
+	
+	public static void switchToChildTab() {
+		
+		String parent=driver.getWindowHandle();
+		Set<String>s=driver.getWindowHandles();
+		Iterator <String> I1= s.iterator();
+
+		while(I1.hasNext())
+		{
+			
+			String child_window=I1.next();
+			if(!parent.equals(child_window))
+			{
+				driver.switchTo().window(child_window);
+				return;
+			}
+		}
+	}
+	
+	public static void switchToParentTab(String parent) {
+		driver.switchTo().window(parent);
+	}
+	
+	public static void closeBrowser() {
+		driver.close();
 	}
 	
 }
